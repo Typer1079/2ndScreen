@@ -1,0 +1,92 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 0 20px; /* Padding on the left and right of the screen */
+  overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header styling */
+h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+/* Select dropdown styling */
+select {
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Container for video */
+#videoContainer {
+  width: 100%;
+  max-width: 1920px; /* Limit the maximum width of the video container */
+  height: 100%;
+  padding: 0 20px; /* Padding on the left and right of the video */
+  box-sizing: border-box; /* Ensure padding is included in the container's width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video element that takes full screen */
+#videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire screen */
+  display: block;
+}
+
+/* Fullscreen exit button */
+#exitButton {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+/* Fullscreen class applied when in fullscreen mode */
+body.fullscreen #exitButton {
+  display: block;
+}
+
+/* Fullscreen video display */
+body.fullscreen {
+  overflow: hidden;
+  padding: 0; /* Remove padding when in fullscreen mode */
+}
+
+/* Video container */
+video {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
