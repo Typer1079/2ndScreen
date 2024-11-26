@@ -4,9 +4,9 @@
   "description": "Webcam feed for second screen",
   "icons": [
     {
-      "src": "icon192192.jpeg",
+      "src": "icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/png"
     },
     {
       "src": "icons/icon-512x512.png",
