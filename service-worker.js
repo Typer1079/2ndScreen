@@ -4,7 +4,7 @@ self.addEventListener('install', event => {
     caches.open('static-cache').then(cache => {
       return cache.addAll([
         '/',
-        '/index.html',
+        '/2ndScreen.html',
         '/2ndScreen.css',
         '/2ndScreen.js',
         // Add other necessary files like images, etc.
