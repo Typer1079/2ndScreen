@@ -25,11 +25,11 @@
     }
     .left {
       justify-content: flex-start;
-      padding-left: 100px; /* Add left padding for the camera dropdown */
+      padding-left: 100px; /* Set left padding for the camera dropdown */
     }
     .right {
       justify-content: flex-end;
-      padding-right: 100px; /* Add right padding for the resolution dropdown */
+      padding-right: 100px; /* Set right padding for the resolution dropdown */
     }
     .title {
       text-align: center;
@@ -37,6 +37,10 @@
     }
     select {
       min-width: 150px; /* Set a minimum width for select elements */
+    }
+    video {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
@@ -67,6 +71,37 @@
 
   <!-- Video element to display the stream -->
   <video id="videoElement" autoplay></video>
+
+  <script>
+    function enterFullscreen() {
+      var videoElement = document.getElementById('videoElement');
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } else if (videoElement.mozRequestFullScreen) { // Firefox
+        videoElement.mozRequestFullScreen();
+      } else if (videoElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        videoElement.webkitRequestFullscreen();
+      } else if (videoElement.msRequestFullscreen) { // IE/Edge
+        videoElement.msRequestFullscreen();
+      }
+    }
+
+    document.getElementById('resolutionSelect').addEventListener('change', function() {
+      var resolution = this.value;
+      var videoElement = document.getElementById('videoElement');
+      // Example: Change source based on selected resolution
+      switch (resolution) {
+        case '2560x1440':
+          videoElement.src = 'path_to_2560x1440_video.mp4';
+          break;
+        case '1920x1080':
+          videoElement.src = 'path_to_1920x1080_video.mp4';
+          break;
+        // Add cases for other resolutions
+      }
+      enterFullscreen();
+    });
+  </script>
 
   <script src="2ndScreen.js"></script>
 
