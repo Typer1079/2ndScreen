@@ -23,6 +23,7 @@
       width: 100%;
       padding: 0 20px; /* Add padding for some space on the sides */
       box-sizing: border-box; /* Ensure padding is included in element's total width and height */
+      height: 60px; /* Set the height of the header row */
     }
     .left, .right {
       display: flex;
@@ -45,11 +46,14 @@
       min-width: 150px; /* Set a minimum width for select elements */
     }
     .video-container {
-      width: 100%;
-      height: calc(100vh - 60px); /* Full height minus header height (adjust as needed) */
+      width: calc(100% - 40px); /* Subtract horizontal padding */
+      height: calc(100vh - 100px); /* Full height minus header height and additional padding */
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 0 20px; /* Add horizontal padding */
+      padding: 20px; /* Add vertical padding */
+      box-sizing: border-box; /* Ensure padding is included in element's total width and height */
     }
     video {
       width: 100%;
