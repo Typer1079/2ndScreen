@@ -52,8 +52,7 @@
       <!-- Camera input dropdown -->
       <label for="inputSelect">Camera:</label>
       <select id="inputSelect">
-        <option value="front">Front Camera</option>
-        <option value="rear">Rear Camera</option>
+        <!-- Options will be populated dynamically -->
       </select>
     </div>
     <div class="title">
@@ -67,4 +66,65 @@
         <option value="1920x1080">1920x1080</option>
         <option value="1680x1050">1680x1050</option>  
         <option value="1280x720">1280x720</option>
+        <option value="1024x1366">1024x1366</option>
         <option value="640x480">640x480</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Video element to display the stream -->
+  <video id="videoElement" autoplay></video>
+
+  <script>
+    // Example video sources with different resolutions
+    var videoSources = {
+      "2560x1440": "path_to_2560x1440_video.mp4",
+      "1920x1080": "path_to_1920x1080_video.mp4",
+      "1680x1050": "path_to_1680x1050_video.mp4",
+      "1280x720": "path_to_1280x720_video.mp4",
+      "1024x1366": "path_to_1024x1366_video.mp4",
+      "640x480": "path_to_640x480_video.mp4"
+    };
+
+    // Populate resolution dropdown
+    var resolutionSelect = document.getElementById('resolutionSelect');
+    for (var resolution in videoSources) {
+      var option = document.createElement('option');
+      option.value = resolution;
+      option.text = resolution;
+      resolutionSelect.appendChild(option);
+    }
+
+    // Change video source based on resolution selection
+    resolutionSelect.addEventListener('change', function() {
+      var resolution = this.value;
+      var videoElement = document.getElementById('videoElement');
+      videoElement.src = videoSources[resolution];
+      enterFullscreen();
+    });
+
+    function enterFullscreen() {
+      var videoElement = document.getElementById('videoElement');
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } else if (videoElement.mozRequestFullScreen) { // Firefox
+        videoElement.mozRequestFullScreen();
+      } else if (videoElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        videoElement.webkitRequestFullscreen();
+      } else if (videoElement.msRequestFullscreen) { // IE/Edge
+        videoElement.msRequestFullscreen();
+      }
+    }
+  </script>
+
+  <script src="2ndScreen.js"></script>
+
+  <!-- Service Worker -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('Service Worker registered!'));
+  }
+  </script>
+</body>
+</html>
