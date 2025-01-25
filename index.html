@@ -47,7 +47,7 @@
     }
     .video-container {
       width: calc(100% - 5px); /* Reduced horizontal padding */
-      height: calc(100vh - 90px); /* Full height minus header height and additional padding */
+      height: calc(100vh - 110px); /* Full height minus header height and additional padding */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -121,9 +121,6 @@
           break;
         case '1280x720':
           videoElement.src = 'path_to_1280x720_video.mp4';
-          break;
-        case '1024x1366':
-          videoElement.src = 'path_to_1024x1366_video.mp4';
           break;
         default:
           videoElement.src = '';
