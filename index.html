@@ -38,9 +38,19 @@
     select {
       min-width: 150px; /* Set a minimum width for select elements */
     }
+    .video-container {
+      width: 100%;
+      max-width: 1280px; /* Set maximum width for the video container */
+      height: auto;
+      max-height: 720px; /* Set maximum height for the video container */
+      margin: auto; /* Center the container */
+      border: 1px solid #000; /* Optional: Add a border for visual reference */
+      overflow: hidden; /* Ensure content fits within the container */
+    }
     video {
       width: 100%;
       height: 100%;
+      object-fit: contain; /* Ensure the entire video fits within the container */
     }
   </style>
 </head>
@@ -62,15 +72,18 @@
       <select id="resolutionSelect">
         <option value="2560x1440">2560x1440</option>
         <option value="1920x1080">1920x1080</option>
-        <option value="1440x900">1440x900</option>  
+        <option value="1680x1050">1680x1050</option>  
         <option value="1280x720">1280x720</option>
+        <option value="1024x1366">1024x1366</option> <!-- Added 1024x1366 option -->
         <option value="640x480">640x480</option>
       </select>
     </div>
   </div>
 
-  <!-- Video element to display the stream -->
-  <video id="videoElement" autoplay></video>
+  <!-- Video container to display the stream -->
+  <div class="video-container">
+    <video id="videoElement" autoplay></video>
+  </div>
 
   <script>
     function enterFullscreen() {
@@ -97,13 +110,49 @@
         case '1920x1080':
           videoElement.src = 'path_to_1920x1080_video.mp4';
           break;
-        case '1440x900':
-          videoElement.src = 'path_to_1440x900_video.mp4';
+        case '1680x1050':
+          videoElement.src = 'path_to_1680x1050_video.mp4';
           break;
-        // Add cases for other resolutions
+        case '1280x720':
+          videoElement.src = 'path_to_1280x720_video.mp4';
+          break;
+        case '1024x1366':
+          videoElement.src = 'path_to_1024x1366_video.mp4';
+          break;
+        case '640x480':
+          videoElement.src = 'path_to_640x480_video.mp4';
+          break;
+        default:
+          videoElement.src = '';
       }
+      videoElement.play();
       enterFullscreen();
     });
+
+    // Request camera access and list available cameras
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        // Get the video tracks from the stream
+        var videoTracks = stream.getVideoTracks();
+        
+        // Populate the camera dropdown with available cameras
+        return navigator.mediaDevices.enumerateDevices();
+      })
+      .then(function(devices) {
+        var inputSelect = document.getElementById('inputSelect');
+        inputSelect.innerHTML = ""; // Clear the dropdown
+        devices.forEach(function(device) {
+          if (device.kind === 'videoinput') {
+            var option = document.createElement('option');
+            option.value = device.deviceId;
+            option.text = device.label || `Camera ${inputSelect.length + 1}`;
+            inputSelect.appendChild(option);
+          }
+        });
+      })
+      .catch(function(err) {
+        console.error('Error accessing camera: ', err);
+      });
   </script>
 
   <script src="2ndScreen.js"></script>
