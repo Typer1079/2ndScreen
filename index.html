@@ -62,12 +62,7 @@
       <!-- Camera resolution dropdown -->
       <label for="resolutionSelect">Resolution:</label>
       <select id="resolutionSelect">
-        <option value="2560x1440">2560x1440</option>
-        <option value="1920x1080">1920x1080</option>
-        <option value="1680x1050">1680x1050</option>  
-        <option value="1280x720">1280x720</option>
-        <option value="1024x1366">1024x1366</option> <!-- Added 1024x1366 option -->
-        <option value="640x480">640x480</option>
+        <!-- Options will be populated dynamically -->
       </select>
     </div>
   </div>
@@ -110,8 +105,9 @@
       "640x480": "path_to_640x480_video.mp4"
     };
 
-    // Populate resolution dropdown
+    // Populate resolution dropdown without duplicates
     var resolutionSelect = document.getElementById('resolutionSelect');
+    resolutionSelect.innerHTML = ""; // Clear the dropdown
     for (var resolution in videoSources) {
       var option = document.createElement('option');
       option.value = resolution;
@@ -124,6 +120,7 @@
       var resolution = this.value;
       var videoElement = document.getElementById('videoElement');
       videoElement.src = videoSources[resolution];
+      videoElement.play();
       enterFullscreen();
     });
 
