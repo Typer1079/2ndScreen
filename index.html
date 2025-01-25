@@ -10,23 +10,45 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="icon-192x192.png">
   <meta name="theme-color" content="#ffffff">
+  <style>
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .left, .right {
+      width: 25%;
+    }
+    .title {
+      text-align: center;
+      flex-grow: 1;
+    }
+  </style>
 </head>
 <body>
-  <h1>2ndScreen</h1>
-
-  <!-- Camera resolution dropdown -->
-  <select id="resolutionSelect">
-	<option value="2560x1440">2560x1440</option>
-    	<option value="1920x1080">1920x1080</option>
-	<option value="1680x1050">1680x1050</option>  
-    	<option value="1280x720">1280x720</option>
-    	<option value="640x480">640x480</option>
-  </select>
-
-  <!-- Camera input dropdown -->
-  <select id="inputSelect">
-    <!-- Options will be populated dynamically -->
-  </select>
+  <div class="header">
+    <div class="left">
+      <!-- Camera input dropdown -->
+      <label for="inputSelect">Camera:</label>
+      <select id="inputSelect">
+        <!-- Options will be populated dynamically -->
+      </select>
+    </div>
+    <div class="title">
+      <h1>2ndScreen</h1>
+    </div>
+    <div class="right">
+      <!-- Camera resolution dropdown -->
+      <label for="resolutionSelect">Resolution:</label>
+      <select id="resolutionSelect">
+        <option value="2560x1440">2560x1440</option>
+        <option value="1920x1080">1920x1080</option>
+        <option value="1680x1050">1680x1050</option>  
+        <option value="1280x720">1280x720</option>
+        <option value="640x480">640x480</option>
+      </select>
+    </div>
+  </div>
 
   <!-- Video element to display the stream -->
   <video id="videoElement" autoplay></video>
