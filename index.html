@@ -11,12 +11,18 @@
   <link rel="apple-touch-icon" href="icon-192x192.png">
   <meta name="theme-color" content="#ffffff">
   <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
       padding: 0 20px; /* Add padding for some space on the sides */
+      box-sizing: border-box; /* Ensure padding is included in element's total width and height */
     }
     .left, .right {
       display: flex;
@@ -40,12 +46,10 @@
     }
     .video-container {
       width: 100%;
-      max-width: 1280px; /* Set maximum width for the video container */
-      height: auto;
-      max-height: 720px; /* Set maximum height for the video container */
-      margin: auto; /* Center the container */
-      border: 1px solid #000; /* Optional: Add a border for visual reference */
-      overflow: hidden; /* Ensure content fits within the container */
+      height: calc(100vh - 60px); /* Full height minus header height (adjust as needed) */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     video {
       width: 100%;
