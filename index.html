@@ -62,11 +62,7 @@
       <!-- Camera resolution dropdown -->
       <label for="resolutionSelect">Resolution:</label>
       <select id="resolutionSelect">
-        <option value="2560x1440">2560x1440</option>
-        <option value="1920x1080">1920x1080</option>
-        <option value="1680x1050">1680x1050</option>  
-        <option value="1280x720">1280x720</option>
-        <option value="640x480">640x480</option>
+        <!-- Options will be populated dynamically -->
       </select>
     </div>
   </div>
@@ -75,6 +71,32 @@
   <video id="videoElement" autoplay></video>
 
   <script>
+    // Example video sources with different resolutions
+    var videoSources = {
+      "2560x1440": "path_to_2560x1440_video.mp4",
+      "1920x1080": "path_to_1920x1080_video.mp4",
+      "1680x1050": "path_to_1680x1050_video.mp4",
+      "1280x720": "path_to_1280x720_video.mp4",
+      "640x480": "path_to_640x480_video.mp4"
+    };
+
+    // Populate resolution dropdown
+    var resolutionSelect = document.getElementById('resolutionSelect');
+    for (var resolution in videoSources) {
+      var option = document.createElement('option');
+      option.value = resolution;
+      option.text = resolution;
+      resolutionSelect.appendChild(option);
+    }
+
+    // Change video source based on resolution selection
+    resolutionSelect.addEventListener('change', function() {
+      var resolution = this.value;
+      var videoElement = document.getElementById('videoElement');
+      videoElement.src = videoSources[resolution];
+      enterFullscreen();
+    });
+
     function enterFullscreen() {
       var videoElement = document.getElementById('videoElement');
       if (videoElement.requestFullscreen) {
@@ -87,22 +109,6 @@
         videoElement.msRequestFullscreen();
       }
     }
-
-    document.getElementById('resolutionSelect').addEventListener('change', function() {
-      var resolution = this.value;
-      var videoElement = document.getElementById('videoElement');
-      // Example: Change source based on selected resolution
-      switch (resolution) {
-        case '2560x1440':
-          videoElement.src = 'path_to_2560x1440_video.mp4';
-          break;
-        case '1920x1080':
-          videoElement.src = 'path_to_1920x1080_video.mp4';
-          break;
-        // Add cases for other resolutions
-      }
-      enterFullscreen();
-    });
   </script>
 
   <script src="2ndScreen.js"></script>
